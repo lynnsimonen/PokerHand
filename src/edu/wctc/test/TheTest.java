@@ -1,11 +1,8 @@
 package edu.wctc.test;
-
 import edu.wctc.*;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static org.junit.Assert.*;
 
 
@@ -57,7 +54,6 @@ public class TheTest {
         hand.add(new Card(Faces.NINE, Suits.HEARTS));
         Hand theHand = new Hand(hand);
         assertTrue(CheckHand.isStraight(theHand));
-
     }
 
     @Test
@@ -70,6 +66,14 @@ public class TheTest {
         hand.add(new Card(Faces.ACE, Suits.CLUBS));
         Hand theHand = new Hand(hand);
         assertTrue(CheckHand.isFourOfAKind(theHand));
+        hand = new ArrayList<>();
+        hand.add(new Card(Faces.ACE, Suits.CLUBS));
+        hand.add(new Card(Faces.TEN, Suits.HEARTS));
+        hand.add(new Card(Faces.TEN, Suits.SPADES));
+        hand.add(new Card(Faces.TEN, Suits.DIAMONDS));
+        hand.add(new Card(Faces.THREE, Suits.CLUBS));
+        theHand = new Hand(hand);
+        assertFalse(CheckHand.isFourOfAKind(theHand));
         //assertFalse(CheckHand.isFullHouse(theHand));
     }
 
@@ -119,21 +123,50 @@ public class TheTest {
         hand.add(new Card(Faces.ACE, Suits.CLUBS));
         Hand theHand = new Hand(hand);
         assertTrue(CheckHand.isThreeOfAKind(theHand));
+        hand = new ArrayList<>();
+        hand.add(new Card(Faces.TEN, Suits.CLUBS));
+        hand.add(new Card(Faces.TEN, Suits.HEARTS));
+        hand.add(new Card(Faces.TWO, Suits.SPADES));
+        hand.add(new Card(Faces.SEVEN, Suits.DIAMONDS));
+        hand.add(new Card(Faces.ACE, Suits.CLUBS));
+        theHand = new Hand(hand);
+        assertFalse(CheckHand.isThreeOfAKind(theHand));
     }
 
     @Test
     public void testIsTwoPair() {
-
+        List<Card> hand = new ArrayList<>();
+        hand.add(new Card(Faces.TEN, Suits.CLUBS));
+        hand.add(new Card(Faces.TEN, Suits.HEARTS));
+        hand.add(new Card(Faces.SEVEN, Suits.SPADES));
+        hand.add(new Card(Faces.SEVEN, Suits.DIAMONDS));
+        hand.add(new Card(Faces.ACE, Suits.CLUBS));
+        Hand theHand = new Hand(hand);
+        assertTrue(CheckHand.isTwoPair(theHand));
     }
 
     @Test
     public void testIsOnePair() {
-
+        List<Card> hand = new ArrayList<>();
+        hand.add(new Card(Faces.TEN, Suits.CLUBS));
+        hand.add(new Card(Faces.NINE, Suits.HEARTS));
+        hand.add(new Card(Faces.SEVEN, Suits.SPADES));
+        hand.add(new Card(Faces.SEVEN, Suits.DIAMONDS));
+        hand.add(new Card(Faces.ACE, Suits.CLUBS));
+        Hand theHand = new Hand(hand);
+        assertTrue(CheckHand.isOnePair(theHand));
     }
 
     @Test
     public void testIsHighCard() {
-
+        List<Card> hand = new ArrayList<>();
+        hand.add(new Card(Faces.TEN, Suits.CLUBS));
+        hand.add(new Card(Faces.NINE, Suits.HEARTS));
+        hand.add(new Card(Faces.QUEEN, Suits.SPADES));
+        hand.add(new Card(Faces.SEVEN, Suits.DIAMONDS));
+        hand.add(new Card(Faces.ACE, Suits.CLUBS));
+        Hand theHand = new Hand(hand);
+        assertTrue(CheckHand.isHighCard(theHand));
     }
 
     // go to CheckHand.java to write code

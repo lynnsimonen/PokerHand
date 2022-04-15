@@ -39,12 +39,8 @@ public class CheckHand {
 
     public static boolean isFourOfAKind(Hand hand) {
         List<Card> cards = hand.getHand();
-        if ((cards.get(0).getCardValue() == cards.get(1).getCardValue() &&
-                cards.get(0).getCardValue() == cards.get(2).getCardValue() &&
-                cards.get(0).getCardValue() == cards.get(3).getCardValue()) ||
-                (cards.get(1).getCardValue() == cards.get(2).getCardValue() &&
-                        cards.get(1).getCardValue() == cards.get(3).getCardValue() &&
-                        cards.get(1).getCardValue() == cards.get(4).getCardValue()))
+        if (cards.get(0).getFace() == cards.get(3).getFace() ||
+                cards.get(1).getFace() == cards.get(4).getFace())
             return true;
         else
             return false;
@@ -112,21 +108,24 @@ public class CheckHand {
             return false;
     }
 
-    public static boolean isThreeOfAKind(Hand hand) {
+    public static boolean isThreeOfAKind(Hand hand) {  //no need to determine if full house.  That is another test!
         List<Card> cards = hand.getHand();
-        if ((cards.get(0).getCardValue() == cards.get(1).getCardValue() &&
-                cards.get(0).getCardValue() == cards.get(2).getCardValue() ||
-                cards.get(1).getCardValue() == cards.get(2).getCardValue()) &&
-                (cards.get(1).getCardValue() == cards.get(3).getCardValue() ||
-                        cards.get(2).getCardValue() == cards.get(3).getCardValue() &&
-                        cards.get(2).getCardValue() == cards.get(4).getCardValue()))
+        if (cards.get(0).getFace() == cards.get(2).getFace() ||
+                cards.get(1).getFace() == cards.get(3).getFace() ||
+                cards.get(2).getFace() == cards.get(4).getFace())
             return true;
         else
             return false;
     }
 
     public static boolean isTwoPair(Hand hand) {
-        return true;
+        List<Card> cards = hand.getHand();
+        if (cards.get(0).getFace() == cards.get(1).getFace() ||
+                cards.get(1).getFace() == cards.get(3).getFace() ||
+                cards.get(2).getFace() == cards.get(4).getFace())
+            return true;
+        else
+            return false;
     }
 
     public static boolean isOnePair(Hand hand) {
